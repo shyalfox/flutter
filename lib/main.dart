@@ -28,7 +28,7 @@ class MySlapApp extends StatelessWidget {
           ),
           RaisedButton(
             child: Text('Answer 2'),
-            onPressed: () => print('Answer 2 chosen'),
+            onPressed: () => print('Answer 2 yes chosen'),
           ),
           RaisedButton(
             child: Text('Answer 3'),
