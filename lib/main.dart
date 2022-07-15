@@ -16,25 +16,50 @@ class MySlapApp extends StatefulWidget {
 }
 
 class _MySlapAppState extends State<MySlapApp> {
-  var _questionIndex = 0;
   final _questions = const [
     {
       'questionText': 'What\'s your favourite color?',
-      'answers': ['Black', 'Red', 'Green', 'White'],
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 1},
+        {'text': 'Green', 'score': 3},
+        {'text': 'Blue', 'score': 4},
+      ],
     },
     {
       'questionText': 'What\'s your favourite animal?',
-      'answers': ['Lion', 'Tiger', 'Swan', 'Dog'],
+      'answers': [
+        {'text': 'Lion', 'score': 6},
+        {'text': 'Tiger', 'score': 5},
+        {'text': 'Ape', 'score': 10},
+        {'text': 'Monkey', 'score': 3},
+      ],
     },
     {
-      'questionText': 'What\'s your favourite animal?',
-      'answers': ['Lion', 'Tiger', 'Swan', 'Dog'],
+      'questionText': 'What\'s your favourite food?',
+      'answers': [
+        {'text': 'Momo', 'score': 10},
+        {'text': 'Chow', 'score': 5},
+        {'text': 'Juice', 'score': 4},
+        {'text': 'Hot_Dog', 'score': 3},
+      ],
     },
   ];
 
-  void _answerQuestion() {
+  var _questionIndex = 0;
+  var _totalScore = 0;
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
+  void _answerQuestion(int score) {
     // var aBool = true;
     // aBool = false;
+
+    _totalScore += score;
 
     setState(() {
       _questionIndex = _questionIndex + 1;
@@ -60,7 +85,7 @@ class _MySlapAppState extends State<MySlapApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_totalScore, _resetQuiz),
       ),
     );
   }
